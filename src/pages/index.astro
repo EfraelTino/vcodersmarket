@@ -1,0 +1,193 @@
+---
+import DemoSection from "@/components/sections/DemoSection.astro";
+import Layout from "../layouts/Layout.astro";
+import Header from "@/components/ui/Header.astro";
+
+// Asumiendo que ya tienes Inter en tu layout o global.css
+const iconItems = [
+  {
+    id: 1,
+    icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>',
+    text: "Vender ",
+    color: "#FF5722",
+  },
+  {
+    id: 2,
+    icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>',
+    text: "Comprar ",
+    color: "#22C55E",
+  },
+  {
+    id: 3,
+    icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>',
+    text: "Buscar ",
+    color: "#A855F7",
+  },
+];
+---
+
+<Layout>
+  <style>
+    .bg-grid-dub {
+      background-size: 40px 40px;
+      background-image:
+        linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+      /* Máscara para que se desvanezca hacia los lados y abajo */
+      mask-image: radial-gradient(
+        circle at center top,
+        black 90%,
+        transparent 100%
+      );
+      -webkit-mask-image: radial-gradient(
+        circle at center top,
+        black 90%,
+        transparent 100%
+      );
+    }
+  </style>
+
+  <div class="min-h-screen relative overflow-hidden flex flex-col">
+    <div class="absolute inset-0 z-0 pointer-events-none">
+      <div class="absolute inset-0 bg-grid-dub h-[100dvh]"></div>
+    </div>
+
+    <Header />
+
+    <main
+      class="relative z-10 flex-1 flex flex-col items-center pt-13 text-center w-full max-w-7xl mx-auto px-4"
+    >
+      <a
+        href="#"
+        class="inline-flex items-center mb-4 border border-gray-200 bg-white rounded-full px-1 py-1 pr-3 text-[13px] text-gray-600 hover:border-gray-300 transition-all shadow-sm group"
+      >
+        <span
+          class="px-2 py-0.5 rounded-full flex items-center bg-white border border-gray-100 font-medium text-gray-800 mr-2 shadow-sm"
+          >Beta</span
+        >
+        La primera marketplace para "Vibe Coders"
+        <span
+          class="ml-2 text-gray-400 group-hover:translate-x-0.5 transition-transform"
+          >↗</span
+        >
+      </a>
+
+      <h1
+        class="text-3xl md:text-5xl font-medium tracking-tight text-gray-900 leading-[1.1] mb-6"
+      >
+        Convierte tus apps de IA en ingresos
+      </h1>
+
+      <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+        VibeMarket es la plataforma moderna para comprar y vender proyectos de
+        software generados con IA. No lo guardes, véndelo.
+      </p>
+
+      <div class="w-full max-w-md mx-auto mb-16">
+        <form id="waitlist-form" class="flex gap-3">
+          <input
+            type="email"
+            name="email"
+            placeholder="tu@email.com"
+            required
+            class="flex-1 px-4 py-2.5 bg-white border border-gray-300 rounded-lg text-sm outline-none focus:ring-2 focus:ring-black/10 focus:border-gray-400 transition-all shadow-sm"
+          />
+          <button
+            type="submit"
+            id="submit-btn"
+            class="group flex items-center justify-center gap-2 rounded-xl bg-[#141414] px-5 py-2.5 text-sm font-medium text-white shadow-[inset_0px_2px_0px_0px_rgba(255,255,255,0.15)] ring-1 ring-white/5 transition-all hover:bg-[#1f1f1f] disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
+          >
+            <span>Unirse a la lista</span>
+            <svg
+              id="loading-spinner"
+              class="w-4 h-4 hidden animate-spin text-gray-400"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+          </button>
+        </form>
+        <p
+          id="feedback-message"
+          class="mt-3 text-sm font-medium hidden text-green-600"
+        >
+        </p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-4 mb-4 relative z-20">
+        {
+          iconItems.map((item) => (
+            <div class="flex items-center px-3 py-1 bg-white border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 shadow-[0_2px_10px_rgba(0,0,0,0.05)] gap-2">
+              <div
+                set:html={item.icon}
+                class="w-6 h-6 flex items-center justify-center rounded text-white"
+                style={`background-color: ${item.color};`}
+              />
+              {item.text}
+            </div>
+          ))
+        }
+      </div>
+
+      <DemoSection />
+    </main>
+  </div>
+
+  <script is:inline>
+    import { createClient } from "@supabase/supabase-js";
+
+    // REEMPLAZA ESTO
+    const SUPABASE_URL = "TU_URL_DE_SUPABASE";
+    const SUPABASE_KEY = "TU_KEY_DE_SUPABASE";
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+    const form = document.getElementById("waitlist-form");
+    const btn = document.getElementById("submit-btn");
+    const msg = document.getElementById("feedback-message");
+    const spinner = document.getElementById("loading-spinner");
+
+    if (form) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        btn.disabled = true;
+        spinner.classList.remove("hidden");
+        msg.classList.add("hidden");
+
+        const formData = new FormData(form);
+        const email = formData.get("email");
+
+        try {
+          const { error } = await supabase.from("waitlist").insert({ email });
+          if (error) {
+            if (error.code === "23505")
+              throw new Error("¡Ya estás en la lista!");
+            throw error;
+          }
+          msg.textContent = "¡Estás dentro!";
+          msg.classList.remove("hidden");
+          form.reset();
+        } catch (error) {
+          msg.textContent = error.message;
+          msg.classList.remove("hidden");
+          msg.classList.replace("text-green-600", "text-red-600");
+        } finally {
+          btn.disabled = false;
+          spinner.classList.add("hidden");
+        }
+      });
+    }
+  </script>
+</Layout>

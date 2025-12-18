@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* 1. Declara tus fuentes locales */
+@font-face {
+  font-family: "PolySans1";
+  src: url("/fonts/polysans-neutral.woff2") format("woff2");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PolySans2";
+  src: url("/fonts/polysans-slim.woff2") format("woff2");
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 2. Crea la variable CSS */
+:root {
+  /* Define tu variable apuntando al nombre de familia que pusiste arriba */
+  --font-poly: "PolySans1", sans-serif;
+}
+
+* {
+  /* Puedes usarla aquí directamente si quieres que sea la default */
+  font-family: var(--font-poly);
+}
