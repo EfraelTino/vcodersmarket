@@ -3,21 +3,17 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import compress from 'astro-compress';
 import sitemap from '@astrojs/sitemap';
-import node from '@astrojs/node'; // Mantén esto
+import vercel from '@astrojs/vercel'; // <--- CAMBIO IMPORTANTE
 
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
 
-  site: 'https://vivemarket.com',
+  site: 'https://vivemarket.com', // Tu dominio (Vercel te dará uno temporal al principio)
 
-  // 1. ELIMINAMOS la línea "output: 'hybrid'" (Astro 5 ya no la quiere)
-  
-  // 2. MANTENEMOS el adaptador (Necesario para tu API)
-  adapter: node({
-    mode: 'standalone',
-  }),
+  // Usamos el adaptador de Vercel (Serverless)
+  adapter: vercel(),
 
   image: {
     domains: ['supabase.easyautomates.com'],

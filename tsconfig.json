@@ -7,13 +7,17 @@
   "exclude": [
     "dist"
   ],
-  "sourceMap": true,
   "compilerOptions": {
-    "baseUrl": "./src/",
+    "sourceMap": true,
+    // Configuración estándar para el alias @/
+    "baseUrl": ".",
     "paths": {
       "@/*": [
-        "*"
+        "src/*"
       ]
-    }
+    },
+    // Ayuda a que VS Code entienda mejor los módulos
+    "moduleResolution": "bundler",
+    "jsx": "preserve"
   }
 }
