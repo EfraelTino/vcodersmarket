@@ -1,0 +1,85 @@
+<div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+  <div class="absolute inset-0 bg-grid-dub min-h-[100dvh]"></div>
+  
+  <div id="grid-beams" class="absolute inset-0 w-full h-full">
+    </div>
+</div>
+
+<script is:inline>
+  const GRID_SIZE = 40;
+  const BEAM_COUNT = 10; 
+
+  const container = document.getElementById('grid-beams');
+const colors = [
+    '#FF5722', 
+    '#22C55E', 
+    '#A855F7'  
+  ];
+
+  function createBeam() {
+    const beam = document.createElement('div');
+    beam.classList.add('beam');
+    const isVertical = Math.random() > 0.4;
+
+    if (isVertical) {
+      const maxCols = Math.floor(window.innerWidth / GRID_SIZE);
+      const col = Math.floor(Math.random() * maxCols);
+      
+      beam.style.left = `${col * GRID_SIZE}px`;
+      beam.style.top = '-100px';
+      beam.style.width = '1px';
+      beam.style.height = '150px'; 
+      beam.style.background = `linear-gradient(to bottom, transparent, ${colors[Math.floor(Math.random() * colors.length)]}, transparent)`;
+      beam.style.animation = `beam-drop ${2 + Math.random() * 2}s linear forwards`;
+    } else {
+      const maxRows = Math.floor(window.innerHeight / GRID_SIZE);
+      const row = Math.floor(Math.random() * maxRows);
+
+      beam.style.top = `${row * GRID_SIZE}px`; 
+      beam.style.left = '-100px';
+      beam.style.height = '1px';
+      beam.style.width = '150px';
+      beam.style.background = `linear-gradient(to right, transparent, ${colors[Math.floor(Math.random() * colors.length)]}, transparent)`;
+      beam.style.animation = `beam-slide ${2 + Math.random() * 2}s linear forwards`;
+    }
+
+    container.appendChild(beam);
+
+    setTimeout(() => {
+      beam.remove();
+    }, 4000);
+  }
+
+  setInterval(createBeam, 400); 
+</script>
+<style>
+  .bg-grid-dub {
+    background-size: 40px 40px;
+    background-image:
+      linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+    mask-image: radial-gradient(circle at center top, black 90%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle at center top, black 90%, transparent 100%);
+  }
+
+  :global(.beam) {
+    position: absolute;
+    opacity: 0.7;
+    border-radius: 9999px;
+    z-index: 1;
+  }
+
+  @keyframes beam-drop {
+    0% { transform: translateY(-150px); opacity: 0; }
+    20% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+  }
+
+  @keyframes beam-slide {
+    0% { transform: translateX(-150px); opacity: 0; }
+    20% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(100vw); opacity: 0; }
+  }
+</style>

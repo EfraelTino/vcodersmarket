@@ -1,17 +1,98 @@
 ---
 import "@/styles/global.css";
+
+// ----------------------------------------------------------------------------
+// INTERFAZ DE PROPIEDADES (SEO PROPS)
+// ----------------------------------------------------------------------------
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string; // Aunque Google lo ignora, otros bots menores lo leen.
+  image?: string; // URL relativa de la imagen social (ej: /og-image.jpg)
+  noindex?: boolean; // Para ocultar páginas de agradecimiento o admin
+  type?: "website" | "article"; // Para distinguir entre Home y Posts
+}
+
+// ----------------------------------------------------------------------------
+// CONFIGURACIÓN POR DEFECTO (FALLBACKS)
+// ----------------------------------------------------------------------------
+const { 
+  title = "Vive Market | El Marketplace para Vibe Coders",
+  description = "Compra y vende software generado con IA. La plataforma definitiva para Vibe Coders que quieren monetizar sus prompts y aplicaciones. Únete a la revolución.",
+  keywords = "vibe coding, ai marketplace, vender software ia, comprar apps ia, vibe market, software marketplace, monetizar ia",
+  image = "/og-image-default.png", // ¡IMPORTANTE! Crea esta imagen de 1200x630
+  noindex = false,
+  type = "website"
+} = Astro.props;
+
+// ----------------------------------------------------------------------------
+// LÓGICA TÉCNICA
+// ----------------------------------------------------------------------------
+const siteUrl = Astro.site ? Astro.site.href : "https://vivemarket.com"; // Asegúrate de configurar esto en astro.config
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const socialImageURL = new URL(image, siteUrl);
+
+// ----------------------------------------------------------------------------
+// STRUCTURED DATA (JSON-LD)
+// Esto es lo que hace que Google entienda que eres un NEGOCIO, no un blog cualquiera.
+// ----------------------------------------------------------------------------
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Vive Market",
+  "url": siteUrl,
+  "description": description,
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": `${siteUrl}?q={search_term_string}`,
+    "query-input": "required name=search_term_string"
+  }
+});
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
-  </head>
-  <body>
+    
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
+    
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#141414" /> <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Vive Market Team" />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:site_name" content="Vive Market" />
+    <meta property="og:locale" content="es_ES" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={socialImageURL} />
+    <script type="application/ld+json" set:html={schema} />
+
+    </head>
+  <body class="bg-white text-black antialiased selection:bg-black selection:text-white">
     <slot />
   </body>
 </html>

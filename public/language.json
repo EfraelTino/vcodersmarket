@@ -1,0 +1,144 @@
+{
+  "language": {
+    "es": {
+      "brand": {
+        "name": "VibeMarket",
+        "badge": "Beta",
+        "tagline": "La primera marketplace para \"Vibe Coders\"",
+        "link_icon": "↗"
+      },
+      "hero": {
+        "title": "Convierte tus apps de IA en ingresos",
+        "description": "VibeMarket es la plataforma moderna para comprar y vender proyectos de software generados con IA. No lo guardes, véndelo.",
+        "cta_button": "Unirse a la lista"
+      },
+      "navigation": {
+        "sell": "Vender",
+        "buy": "Comprar",
+        "search": "Buscar"
+      },
+      "form": {
+        "placeholder": "tu@email.com",
+        "button": "Unirse a la lista",
+        "success": "¡Gracias por unirte!",
+        "error": "Algo salió mal."
+      },
+      "rankings": {
+        "header": "vibemarket.com/top-ranking",
+        "items": [
+          {
+            "rank": "01",
+            "icon": "🚀",
+            "name": "SaaS Starter Kit",
+            "status": "EN VENTA",
+            "description": "Plantilla completa para escalar tu negocio sin configurar backend.",
+            "metrics": {
+              "users": "1,250 Usuarios",
+              "revenue": "$4.2k MRR",
+              "score": "Vibe Score: 98%",
+              "likes": 428,
+              "comments": 24
+            }
+          },
+          {
+            "rank": "02",
+            "icon": "🤖",
+            "name": "AgentFlow AI",
+            "status": "Busca Socio",
+            "description": "Automatización de correos IA. Buscando CTO para escalar ventas.",
+            "metrics": {
+              "users": "300 Usuarios",
+              "revenue": "$500 MRR",
+              "score": "Vibe Score: 85%",
+              "likes": 182,
+              "comments": 8
+            }
+          },
+          {
+            "rank": "03",
+            "icon": "⚡",
+            "name": "VibeUI Library",
+            "status": "Showcase",
+            "description": "Automatización de correos IA. Buscando CTO para escalar ventas.",
+            "metrics": {
+              "stars": "1.2k Stars",
+              "type": "Open Source",
+              "score": "Vibe Score: 100%",
+              "likes": 8
+            }
+          }
+        ]
+      }
+    },
+    "en": {
+      "brand": {
+        "name": "VibeMarket",
+        "badge": "Beta",
+        "tagline": "The first marketplace for \"Vibe Coders\"",
+        "link_icon": "↗"
+      },
+      "hero": {
+        "title": "Turn your AI apps into income",
+        "description": "VibeMarket is the modern platform to buy and sell AI-generated software projects. Don't keep it, sell it.",
+        "cta_button": "Join Waitlist"
+      },
+      "navigation": {
+        "sell": "Sell",
+        "buy": "Buy",
+        "search": "Search"
+      },
+      "form": {
+        "placeholder": "you@email.com",
+        "button": "Join Waitlist",
+        "success": "Thanks for joining!",
+        "error": "Something went wrong."
+      },
+      "rankings": {
+        "header": "vibemarket.com/top-ranking",
+        "items": [
+          {
+            "rank": "01",
+            "icon": "🚀",
+            "name": "SaaS Starter Kit",
+            "status": "FOR SALE",
+            "description": "Template to scale your business without backend config.",
+            "metrics": {
+              "users": "1,250 Users",
+              "revenue": "$4.2k MRR",
+              "score": "Vibe Score: 98%",
+              "likes": 428,
+              "comments": 24
+            }
+          },
+          {
+            "rank": "02",
+            "icon": "🤖",
+            "name": "AgentFlow AI",
+            "status": "Seeking Partner",
+            "description": "AI email automation. Looking for CTO to scale sales.",
+            "metrics": {
+              "users": "300 Users",
+              "revenue": "$500 MRR",
+              "score": "Vibe Score: 85%",
+              "likes": 182,
+              "comments": 8
+            }
+          },
+          {
+            "rank": "03",
+            "icon": "⚡",
+            "name": "VibeUI Library",
+            "status": "Showcase",
+            "description": "AI bot automation. Looking for CTO to scale sales.",
+            "metrics": {
+              "stars": "1.2k Stars",
+              "type": "Open Source",
+              "score": "Vibe Score: 100%",
+              "likes": 8
+            }
+          }
+        ]
+      }
+    }
+  }
+}
