@@ -16,13 +16,13 @@ interface Props {
 // ----------------------------------------------------------------------------
 // CONFIGURACIÓN POR DEFECTO (FALLBACKS)
 // ----------------------------------------------------------------------------
-const { 
+const {
   title = "Vive Market | El Marketplace para Vibe Coders",
   description = "Compra y vende software generado con IA. La plataforma definitiva para Vibe Coders que quieren monetizar sus prompts y aplicaciones. Únete a la revolución.",
   keywords = "vibe coding, ai marketplace, vender software ia, comprar apps ia, vibe market, software marketplace, monetizar ia",
   image = "/og-image-default.png", // ¡IMPORTANTE! Crea esta imagen de 1200x630
   noindex = false,
-  type = "website"
+  type = "website",
 } = Astro.props;
 
 // ----------------------------------------------------------------------------
@@ -39,14 +39,14 @@ const socialImageURL = new URL(image, siteUrl);
 const schema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "Vive Market",
-  "url": siteUrl,
-  "description": description,
-  "potentialAction": {
+  name: "Vive Market",
+  url: siteUrl,
+  description: description,
+  potentialAction: {
     "@type": "SearchAction",
-    "target": `${siteUrl}?q={search_term_string}`,
-    "query-input": "required name=search_term_string"
-  }
+    target: `${siteUrl}?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
 });
 ---
 
@@ -56,9 +56,14 @@ const schema = JSON.stringify({
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    
-    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
-    
+
+    <meta
+      name="robots"
+      content={noindex
+        ? "noindex, nofollow"
+        : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}
+    />
+
     <link rel="canonical" href={canonicalURL} />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -67,7 +72,8 @@ const schema = JSON.stringify({
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#141414" /> <title>{title}</title>
+    <meta name="theme-color" content="#141414" />
+    <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
@@ -90,9 +96,22 @@ const schema = JSON.stringify({
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={socialImageURL} />
     <script type="application/ld+json" set:html={schema} />
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M6XLFBXMEW"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-    </head>
-  <body class="bg-white text-black antialiased selection:bg-black selection:text-white">
+      gtag("config", "G-M6XLFBXMEW");
+    </script>
+  </head>
+  <body
+    class="bg-white text-black antialiased selection:bg-black selection:text-white"
+  >
     <slot />
   </body>
 </html>
