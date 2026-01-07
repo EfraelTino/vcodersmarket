@@ -1,0 +1,180 @@
+---
+// src/pages/app/settings.astro
+import DashboardLayout from "@/layouts/DashboardLayout.astro";
+
+// Datos simulados (mock)
+const user = {
+  name: "Felix Vibe",
+  handle: "felix_vibe",
+  email: "coder@vibemarket.com",
+  bio: "Full-stack developer building aesthetic tools for makers. Love Astro and Tailwind.",
+  role: "Indie Hacker",
+  avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Felix",
+};
+---
+
+<DashboardLayout title="Account Settings">
+  <div class="max-w-3xl mx-auto pb-20">
+    
+    <div class="mb-8 border-b border-gray-200 pb-4">
+      <h1 class="text-3xl font-bold text-gray-900">Settings</h1>
+      <p class="text-gray-500 mt-1">Manage your founder profile and account preferences.</p>
+    </div>
+
+    <form onsubmit="event.preventDefault();" class="space-y-8">
+      
+      <section class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+            <h2 class="font-semibold text-gray-900">Public Profile</h2>
+            <span class="text-xs text-gray-500 bg-white border border-gray-200 px-2 py-1 rounded-full">Visible to everyone</span>
+        </div>
+        
+        <div class="p-6 md:p-8 space-y-6">
+            <div class="flex items-center gap-6">
+                <img src={user.avatar} alt="Current Avatar" class="w-20 h-20 rounded-full border border-gray-200 bg-gray-100 object-cover" />
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-3">
+                        <button class="px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm">
+                            Change Avatar
+                        </button>
+                        <button class="px-4 py-2 text-sm font-medium text-red-600 hover:text-red-700 transition-colors">
+                            Remove
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-500">JPG, GIF or PNG. Max size of 800K.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Display Name</label>
+                    <input type="text" value={user.name} class="w-full rounded-lg border-gray-300 border px-3 py-2 text-sm focus:border-gray-900 focus:ring-gray-900 outline-none" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Username / Handle</label>
+                    <div class="flex rounded-lg border border-gray-300 overflow-hidden focus-within:border-gray-900 focus-within:ring-1 focus-within:ring-gray-900">
+                        <span class="px-3 py-2 bg-gray-50 text-gray-500 text-sm border-r border-gray-300">@</span>
+                        <input type="text" value={user.handle} class="flex-1 px-3 py-2 text-sm outline-none border-none" />
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Short Bio</label>
+                <textarea rows="3" class="w-full rounded-lg border-gray-300 border px-3 py-2 text-sm focus:border-gray-900 focus:ring-gray-900 outline-none" placeholder="Tell us about yourself...">{user.bio}</textarea>
+                <div class="flex justify-between mt-1">
+                    <p class="text-xs text-gray-500">Brief description for your profile. HTML not allowed.</p>
+                    <span class="text-xs text-gray-400">84/160</span>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-100 bg-gray-50">
+            <h2 class="font-semibold text-gray-900">Social Presence</h2>
+            <p class="text-xs text-gray-500 mt-0.5">Where can people find your work?</p>
+        </div>
+        
+        <div class="p-6 md:p-8 space-y-5">
+            <div>
+                 <label class="block text-sm font-medium text-gray-700 mb-1">Personal Website / Portfolio</label>
+                 <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
+                    </div>
+                    <input type="url" placeholder="https://vibe.dev" class="w-full rounded-lg border-gray-300 border pl-10 pr-3 py-2 text-sm focus:border-gray-900 outline-none" />
+                 </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">X (Twitter)</label>
+                    <div class="flex rounded-lg border border-gray-300 overflow-hidden focus-within:border-gray-900">
+                        <span class="px-3 py-2 bg-gray-50 text-gray-500 text-sm border-r border-gray-300">x.com/</span>
+                        <input type="text" placeholder="username" class="flex-1 px-3 py-2 text-sm outline-none border-none" />
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">GitHub</label>
+                    <div class="flex rounded-lg border border-gray-300 overflow-hidden focus-within:border-gray-900">
+                        <span class="px-3 py-2 bg-gray-50 text-gray-500 text-sm border-r border-gray-300">github.com/</span>
+                        <input type="text" placeholder="username" class="flex-1 px-3 py-2 text-sm outline-none border-none" />
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+         <div class="px-6 py-4 border-b border-gray-100 bg-gray-50">
+            <h2 class="font-semibold text-gray-900">Private Details</h2>
+        </div>
+        <div class="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                <input type="email" value={user.email} disabled class="w-full rounded-lg border-gray-200 bg-gray-50 text-gray-500 border px-3 py-2 text-sm cursor-not-allowed" />
+                <p class="text-xs text-gray-400 mt-1">Contact support to change email.</p>
+            </div>
+             <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Job Title / Role</label>
+                <input type="text" value={user.role} class="w-full rounded-lg border-gray-300 border px-3 py-2 text-sm focus:border-gray-900 outline-none" />
+            </div>
+        </div>
+      </section>
+
+      <div class="flex items-center justify-end gap-4 border-t border-gray-200 pt-6">
+        <button class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Cancel</button>
+        <button 
+            id="save-btn"
+            class="px-6 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 shadow-lg shadow-gray-200 transition-all flex items-center gap-2"
+        >
+            <span>Save Changes</span>
+        </button>
+      </div>
+
+    </form>
+    
+    <div class="mt-16 pt-10 border-t border-gray-200">
+        <h3 class="text-sm font-bold text-red-600 uppercase tracking-wider mb-4">Danger Zone</h3>
+        <div class="bg-red-50 border border-red-100 rounded-xl p-6 flex items-center justify-between">
+            <div>
+                <h4 class="font-medium text-gray-900">Delete Account</h4>
+                <p class="text-sm text-gray-500 mt-1">Once you delete your account, there is no going back. All your projects will be unlisted.</p>
+            </div>
+            <button class="px-4 py-2 bg-white border border-red-200 text-red-600 text-sm font-medium rounded-lg hover:bg-red-50 transition-colors">
+                Delete account
+            </button>
+        </div>
+    </div>
+
+  </div>
+
+  <div id="toast" class="fixed bottom-5 right-5 bg-gray-900 text-white px-4 py-3 rounded-lg shadow-xl transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3">
+    <svg class="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+    <span class="text-sm font-medium">Settings saved successfully</span>
+  </div>
+
+  <script is:inline>
+    const saveBtn = document.getElementById('save-btn');
+    const toast = document.getElementById('toast');
+
+    saveBtn?.addEventListener('click', () => {
+        // Simulate saving
+        const originalText = saveBtn.innerHTML;
+        saveBtn.innerHTML = `<svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Saving...`;
+        
+        setTimeout(() => {
+            saveBtn.innerHTML = originalText;
+            
+            // Show toast
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }, 800);
+    });
+  </script>
+</DashboardLayout>

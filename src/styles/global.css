@@ -19,8 +19,11 @@
 :root {
   /* Define tu variable apuntando al nombre de familia que pusiste arriba */
   --font-poly: "PolySans1", sans-serif;
-}
 
+}
+@theme{
+  --color-secondary: #FF5722;
+}
 * {
   /* Puedes usarla aquí directamente si quieres que sea la default */
   font-family: var(--font-poly);
