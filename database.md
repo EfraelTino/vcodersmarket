@@ -63,3 +63,7 @@ create table public.project_categories (
   category_id int references public.categories(id) on delete cascade,
   primary key (project_id, category_id)
 );
+## ----------- TASKS -----------------
+| DETAIL TASKS |  STATUS |
+| Fetch pricing | CHECK |
+| Fecth categoies | CHECK |
